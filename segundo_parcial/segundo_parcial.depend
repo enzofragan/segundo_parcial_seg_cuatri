@@ -1,0 +1,26 @@
+# depslib dependency file v1.0
+1543496194 source:c:\users\alumno\desktop\segundo_parcial\alumno.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+	"alumno.h"
+	"LinkedList.h"
+
+1543492964 source:c:\users\alumno\desktop\segundo_parcial\linkedlist.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"LinkedList.h"
+
+1543492460 c:\users\alumno\desktop\segundo_parcial\linkedlist.h
+
+1543496219 source:c:\users\alumno\desktop\segundo_parcial\main.c
+	<stdio.h>
+	<stdlib.h>
+	"alumno.h"
+	"LinkedList.h"
+
+1543495702 c:\users\alumno\desktop\segundo_parcial\alumno.h
+	"LinkedList.h"
+
