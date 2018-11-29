@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
+#include <time.h>
 #include "alumno.h"
 #include "LinkedList.h"
 
@@ -321,8 +322,112 @@ int ordenarAlumno (LinkedList* lista)
                 ret=1;
             }
         }
+    }
+
+    return ret;
+}
+
+int notaFinalAlumnos (void* elemento)
+{
+    int ret=-1;
+    int* notaFinal;
+    int hora = time(NULL);
+
+    eAlumno_getNotaFinal((eAlumno*)elemento,&notaFinal);
+
+    srand(hora);
+
+    if(notaFinal>=0)
+    {
+        notaFinal = (rand()%11)+1;
+
+        eAlumno_setNotaFinal((eAlumno*)elemento,notaFinal);
+        ret=1;
+    }
+
+
+    return ret;
+}
+
+
+int notaAlumnos (LinkedList* lista)
+{
+    int ret=-1;
+    int i;
+    int len;
+
+    if(lista!=NULL)
+    {
+        len=ll_len(lista);
+        for(i=0;i<len;i++)
+        {
+           ll_map(lista,notaFinalAlumnos);
+        ret=1;
+        }
+
         listarTodos(lista);
     }
 
+    return ret;
+}
+
+int guardarAlumno(char* path , LinkedList* lista)
+{
+    FILE* pArchivo;
+    int i;
+    eAlumno* pAux;
+    int len;
+    int ret=-1;
+    int* id;
+    char nombre[128];
+    int* nota1;
+    int* nota2;
+    int* notaFinal;
+    int acu = 0;
+    int acu2 = 0;
+    int promedio;
+
+    pArchivo=fopen(path,"w");
+
+    if(pArchivo!=NULL && lista!=NULL)
+    {
+        len=ll_len(lista);
+
+        for(i=0;i<len;i++)
+        {
+            pAux=(eAlumno*) ll_get(lista,i);
+
+            if(pAux!=NULL)
+            {
+                eAlumno_getNotaFinal(pAux,&notaFinal);
+                acu=notaFinal;
+                acu2= acu2 + acu;
+            }
+        }
+
+        promedio=acu2/i;
+
+        for(i=0;i<len;i++)
+        {
+            pAux=(eAlumno*) ll_get(lista,i);
+
+            if(pAux!=NULL)
+            {
+                eAlumno_getId(pAux,&id);
+                eAlumno_getNombre(pAux,nombre);
+                eAlumno_getNota1(pAux,&nota1);
+                eAlumno_getNota2(pAux,&nota2);
+                eAlumno_getNotaFinal(pAux,&notaFinal);
+
+                if(notaFinal>=promedio)
+                {
+                    fprintf(pArchivo," %d, %s, %d, %d, %d\n",id,nombre,nota1,nota2,notaFinal);
+                    ret=1;
+                }
+
+            }
+        }
+    }
+    fclose(pArchivo);
     return ret;
 }

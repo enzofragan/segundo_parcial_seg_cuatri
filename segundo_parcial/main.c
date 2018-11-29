@@ -9,6 +9,7 @@ int main()
     int dato;
     int orden;
     int mostrar;
+    int guardar;
 
     dato=ParserFromText("MOCK_DATA.csv",alumnoLista);
 
@@ -18,5 +19,9 @@ int main()
     }
 
     orden=ordenarAlumno(alumnoLista);
+
+    mostrar=notaAlumnos(alumnoLista);
+
+    guardar=guardarAlumno("final.csv",alumnoLista);
     return 0;
 }

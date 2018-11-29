@@ -33,4 +33,7 @@ int listaAlumno(eAlumno* alumno);
 int listarTodos(LinkedList* lista);
 int compararAlumnos (void* ,void* );
 int ordenarAlumno (LinkedList* );
-
+int notaFinalAlumnos (void* );
+int notaAlumnos (LinkedList* );
+int notaFinales();
+int guardarAlumno(char* path , LinkedList* lista);

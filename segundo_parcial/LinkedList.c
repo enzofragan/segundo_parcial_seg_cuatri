@@ -659,3 +659,28 @@ LinkedList* ll_filter(LinkedList* this,int (*pFunc)(void*))
     }
     return auxElement;
 }
+
+int ll_map(LinkedList* this,int (*pFunc)(void*))
+{
+    LinkedList* aux = ll_newLinkedList();
+    int len;
+    int i;
+    void* elemento;
+    int map;
+    int ret=-1;
+
+    if(this!=NULL && pFunc!=NULL)
+    {
+        len=ll_len(this);
+
+        for(i=0;i<len;i++)
+        {
+            elemento=ll_get(this,i);
+            pFunc(elemento);
+            ll_set(this,i,elemento);
+            ret=1;
+        }
+    }
+
+    return ret;
+}
