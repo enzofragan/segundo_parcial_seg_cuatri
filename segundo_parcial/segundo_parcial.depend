@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1543503360 source:c:\users\alumno\desktop\segundo_parcial\alumno.c
+1543504207 source:c:\users\alumno\desktop\segundo_parcial\alumno.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>

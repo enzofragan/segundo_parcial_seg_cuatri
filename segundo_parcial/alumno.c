@@ -333,17 +333,15 @@ int notaFinalAlumnos (void* elemento)
     int* notaFinal;
     int hora = time(NULL);
 
-    eAlumno_getNotaFinal((eAlumno*)elemento,&notaFinal);
+
 
     srand(hora);
 
-    if(notaFinal>=0)
-    {
-        notaFinal = (rand()%11)+1;
 
+        notaFinal = (rand()%11)+1;
         eAlumno_setNotaFinal((eAlumno*)elemento,notaFinal);
         ret=1;
-    }
+
 
 
     return ret;
